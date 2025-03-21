@@ -53,16 +53,20 @@ button:hover {
         <button id="checkBtn">✅ Check Now</button>
     </div>
 
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get('user_id');
+   <script>
+    // ✅ Capture user_id from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('user_id');
 
-        document.getElementById("checkBtn").addEventListener("click", async () => {
-            if (!userId) {
-                alert("❌ User ID is missing!");
-                return;
-            }
+    // ✅ Ensure Check button works properly
+    document.getElementById("checkBtn").addEventListener("click", async () => {
+        if (!userId) {
+            alert("❌ Error: User ID is missing!");
+            return;
+        }
 
+        try {
+            // ✅ Send POST request to Flask backend
             const response = await fetch("/check_clicked", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -72,11 +76,16 @@ button:hover {
             const result = await response.json();
 
             if (result.status === "success") {
-                alert("✅ Button was clicked! Check your Telegram.");
+                alert("✅ Success: Button was clicked! Check your Telegram.");
             } else {
                 alert("❌ Error: " + result.error);
             }
-        });
-    </script>
+
+        } catch (error) {
+            console.error("❌ Error sending data:", error);
+            alert("❌ Something went wrong. Try again!");
+        }
+    });
+</script>
 </body>
 </html>
