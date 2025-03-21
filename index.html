@@ -1,476 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Teklay Gebremeskel Tesfay's professional portfolio showcasing expertise in technology, programming, and computer science. High school student aspiring to become a software engineer with skills in ICT, physics, and mathematics.">
-    <meta name="keywords" content="Teklay Gebremeskel Tesfay, portfolio, software engineer, ICT, technology, programming, computer science, high school student">
-    <meta name="author" content="Teklay Gebremeskel Tesfay">
-
-    <!-- Open Graph for social media sharing -->
-    <meta property="og:title" content="Teklay Gebremeskel Tesfay - Professional Portfolio">
-    <meta property="og:description" content="Aspiring software engineer with a passion for technology and programming. Explore my projects, skills, and background in ICT, physics, and math.">
-    <meta property="og:image" content="https://yourdomain.com/path/to/your-image.jpg">
-    <meta property="og:url" content="https://yourdomain.com">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card data for Twitter sharing -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Teklay Gebremeskel Tesfay - Professional Portfolio">
-
-<meta name="google-site-verification" content="Bx6UaeyYJbDpkZTg-gVFGjRYtHW5ebNcIdDYiRe1-wI" />
-    <meta name="twitter:description" content="Check out Teklay Gebremeskel Tesfay's portfolio to explore skills, projects, and more in the fields of programming, ICT, and engineering.">
-    <meta name="twitter:image" content="https://yourdomain.com/path/to/your-image.jpg">
+  <style>
     
-    <!-- Title for search engines -->
-    <title>Teklay Gebremeskel Tesfay - Professional Portfolio</title>
-    <style>
-:root {
-  --neon-pink: #ff2d55;
-  --neon-blue: #00fff2;  
-  --neon-green: #39ff14;
-  --dark-bg: #0a0a0f;
-}
-
-body {
+    body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   margin: 0;
-  padding: 0;
-  background: var(--dark-bg);
-  font-family: 'Rajdhani', sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-  line-height: 1.6;
 }
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  position: relative;
-}
-
-.glitch-wrapper {
-  position: relative;
   text-align: center;
-}
-
-.glitch {
-  font-size: 3rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  position: relative;
-  text-shadow: 0.05em 0 0 var(--neon-pink), 
-              -0.05em -0.025em 0 var(--neon-blue),
-              -0.025em 0.05em 0 var(--neon-green);
-  animation: glitch 2s infinite;
-}
-
-@keyframes glitch {
-  0% { transform: none; opacity: 1; }
-  7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
-  10% { transform: none; opacity: 1; }
-  27% { transform: none; opacity: 1; }
-  30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
-  35% { transform: none; opacity: 1; }
-  52% { transform: none; opacity: 1; }
-  55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
-  50% { transform: none; opacity: 1; }
-  72% { transform: none; opacity: 1; }
-  75% { transform: skew(0.4deg, 1deg); opacity: 0.75; }
-  80% { transform: none; opacity: 1; }
-  100% { transform: none; opacity: 1; }
-}
-
-.profile-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 3rem 0;
-}
-
-.profile-image-container {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 2rem;
-  animation: scan 4s linear infinite;
-}
-
-.profile-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 3px solid var(--neon-blue);
-  position: relative;
-  z-index: 1;
-  background: #2a2a2a;
-  overflow: hidden;
-}
-
-.profile-image::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  background: var(--neon-blue);
-  animation: scan-line 2s linear infinite;
-  box-shadow: 0 0 15px var(--neon-blue);
-}
-
-@keyframes scan-line {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: 100%;
-  }
-}
-
-@keyframes scan {
-  0% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 242, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 20px rgba(0, 255, 242, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 242, 0);
-  }
-}
-
-.details-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid var(--neon-blue);
-  padding: 2rem;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,255,242,0.2);
-  margin: 2rem 0;
-  backdrop-filter: blur(10px);
+  width: 300px;
 }
 
-.section-title {
-  color: var(--neon-blue);
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--neon-pink);
-  padding-bottom: 0.5rem;
+h1 {
+  color: #4CAF50;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin: 1.5rem 0;
-}
-
-.skill-card {
-  background: rgba(255,255,255,0.05);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--neon-green);
-  position: relative;
-  backdrop-filter: blur(10px);
-  overflow: hidden;
-}
-
-.skill-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 5px;
-  height: 100%;
-  background: var(--neon-green);
-  animation: skill-pulse 2s ease-in-out infinite;
-}
-
-@keyframes skill-pulse {
-  0% {
-    box-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
-  }
-  50% {
-    box-shadow: 0 0 20px var(--neon-green), 0 0 30px var(--neon-green);
-  }
-  100% {
-    box-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
-  }
-}
-
-.skill-name {
-  color: var(--neon-green);
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-}
-
-.skill-description {
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-.typing-effect {
-  border-right: 2px solid var(--neon-green);
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typing 4s steps(40) infinite, blink 0.5s step-end infinite alternate;
-}
-
-@keyframes typing {
-  0% { width: 0 }
-  50% { width: 100% }
-  100% { width: 0 }
-}
-
-@keyframes blink {
-  50% { border-color: transparent }
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.contact-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.contact-icon {
-  color: var(--neon-blue);
-  font-size: 1.5rem;
-}
-
-.age-counter {
-  font-size: 1.2rem;
-  color: var(--neon-pink);
-  margin: 0.5rem 0;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 2rem;
-}
-
-.social-button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid var(--neon-blue);
+button {
+  background: #4CAF50;
   color: white;
-  text-decoration: none;
-  font-size: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-.social-button::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, var(--neon-blue) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+button:hover {
+  background: #45a049;
 }
-
-.social-button:hover {
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 0 20px var(--neon-blue);
-}
-
-.social-button:hover::before {
-  opacity: 0.3;
-}
-
-.matrix-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.1;
-}
-.picoftk {
-  width:210px;
-  height:210px; 
-  border-radius: 12px;
-  margin-bottom:23px;
-}
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  </style>
+    <title>Tehlay’s Airdrop Bot</title>
 </head>
+
 <body>
-
-<canvas class="matrix-bg" id="matrix"></canvas>
-
-<div class="container">
-  <div class="glitch-wrapper">
-    <h1 class="glitch">Teklay Gebremeskel Tesfay</h1>
-  </div>
-  
-  <div class="profile-section">
-    <div class="profile-image-container">
-      <div class="electric-border"></div>
-      <div class="profile-image">
-        <img class="picoftk" src="20231216_051659.jpg" alt="teklay's photo">
-      </div>
+    <div class="container">
+        <h1>🔥 Welcome to Tehlay’s Airdrop Bot!</h1>
+        <p>Click the button below to confirm!</p>
+        <button id="checkBtn">✅ Check Now</button>
     </div>
-  </div>
 
-  <div class="details-card">
-    <h2 class="section-title">Professional Summary</h2>
-    <p>Ambitious and dedicated 11th-grade Natural Science student with a strong passion for technology and software engineering. Actively pursuing knowledge in programming and computer science while maintaining excellence in academic studies😍.</p>
-  </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
 
-  <div class="details-card">
-    <h2 class="section-title">Academic Focus</h2>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h3 class="skill-name">ICT</h3>
-        <p class="skill-description typing-effect">Strong foundation in Information and Communication Technology, with particular interest in programming and systems architecture.</p>
-      </div>
-      <div class="skill-card">
-        <h3 class="skill-name">Physics</h3>
-        <p class="skill-description typing-effect">Advanced understanding of physical principles and mathematical modeling of real-world phenomena.</p>
-      </div>
-      <div class="skill-card">
-        <h3 class="skill-name">Mathematics</h3>
-        <p class="skill-description typing-effect">Excellence in analytical and problem-solving skills through advanced mathematical concepts.</p>
-      </div>
-    </div>
-  </div>
+        document.getElementById("checkBtn").addEventListener("click", async () => {
+            if (!userId) {
+                alert("❌ User ID is missing!");
+                return;
+            }
 
-  <div class="details-card">
-    <h2 class="section-title">Personal Information</h2>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <i class="fas fa-user contact-icon"></i>
-        <p>Age: <span id="age" class="age-counter"></span></p>
-      </div>
-      <div class="contact-info">
-        <i class="fas fa-phone contact-icon"></i>
-        <p>+251988326886</p>
-      </div>
-      <div class="contact-info">
-        <i class="fas fa-map-marker-alt contact-icon"></i>
-        <p>Ethiopia, Tigray, Mayhanse</p>
-      </div>
-      <div class="contact-info">
-        <i class="fas fa-graduation-cap contact-icon"></i>
-        <p>11th Grade Natural Science Student</p>
-      </div>
-      <div class="contact-info">
-        <i class="fas fa-code contact-icon"></i>
-        <p>Aspiring Software Engineer</p>
-      </div>
-    </div>
-  </div>
+            const response = await fetch("/check_clicked", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ user_id: userId })
+            });
 
-  <div class="social-links">
-    <a href="https://www.facebook.com/profile.php?id=100090467511548" class="social-button">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.instagram.com/teklay2222?igsh=YzljYTk1ODg3Zg==" class="social-button">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://t.me/wedi_thni" class="social-button">
-      <i class="fab fa-telegram-plane"></i>
-    </a>
-  </div>
-</div>
+            const result = await response.json();
 
-<script>
-const canvas = document.getElementById('matrix');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
-const drops = [];
-const fontSize = 14;
-const columns = canvas.width/fontSize;
-
-for(let i = 0; i < columns; i++) {
-    drops[i] = 1;
-}
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    ctx.fillStyle = '#0F0';
-    ctx.font = fontSize + 'px monospace';
-    
-    for(let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-        drops[i]++;
-    }
-}
-
-setInterval(drawMatrix, 50);
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// Age calculation and update
-function calculateAge() {
-    const birthDate = new Date(2006, 10, 6); // November 6, 2006
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    document.getElementById('age').textContent = age;
-}
-
-calculateAge();
-setInterval(calculateAge, 1000 * 60 * 60 * 24); // Update age every day
-
-// Add typing effect to skill descriptions
-const skillDescriptions = document.querySelectorAll('.typing-effect');
-skillDescriptions.forEach(desc => {
-    const text = desc.textContent;
-    desc.textContent = '';
-    let i = 0;
-    
-    function typeWriter() {
-        if (i < text.length) {
-            desc.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-        } else {
-            setTimeout(() => {
-                desc.textContent = '';
-                i = 0;
-                typeWriter();
-            }, 2000);
-        }
-    }
-    
-    typeWriter();
-});
-</script>
-
+            if (result.status === "success") {
+                alert("✅ Button was clicked! Check your Telegram.");
+            } else {
+                alert("❌ Error: " + result.error);
+            }
+        });
+    </script>
 </body>
 </html>
