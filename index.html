@@ -1,91 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    
-    body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-.container {
-  text-align: center;
-  background: #fff;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  width: 300px;
-}
-
-h1 {
-  color: #4CAF50;
-}
-
-button {
-  background: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-button:hover {
-  background: #45a049;
-}
-  </style>
-    <title>Tehlay’s Airdrop Bot</title>
+    <title>Tehlay's Airdrop Bot</title>
 </head>
-
 <body>
-    <div class="container">
-        <h1>🔥 Welcome to Tehlay’s Airdrop Bot!</h1>
-        <p>Click the button below to confirm!</p>
-        <button id="checkBtn">✅ Check Now</button>
-    </div>
+    <h1>🔥 Welcome to Tehlay's Airdrop Bot</h1>
+    <button id="checkBtn">✅ Check Now</button>
 
-   <script>
-    // ✅ Capture user_id from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('user_id');
+    <script>
+        // ✅ Capture user_id from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
 
-    // ✅ Ensure Check button works properly
-    document.getElementById("checkBtn").addEventListener("click", async () => {
         if (!userId) {
-            alert("❌ Error: User ID is missing!");
-            return;
+            alert("❌ Error: User ID missing! Try restarting the bot.");
         }
 
-        try {
-            // ✅ Send POST request to Flask backend
-            const response = await fetch("/check_clicked", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ user_id: userId })
-            });
+        // ✅ Handle Check button click
+        document.getElementById("checkBtn").addEventListener("click", async () => {
+            try {
+                const response = await fetch("/check_clicked", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ user_id: userId })
+                });
 
-            const result = await response.json();
+                const result = await response.json();
 
-            if (result.status === "success") {
-                alert("✅ Success: Button was clicked! Check your Telegram.");
-            } else {
-                alert("❌ Error: " + result.error);
+                if (response.ok && result.status === "success") {
+                    alert("✅ Success: Button clicked! Check your Telegram.");
+                } else {
+                    console.error("❌ Error:", result.error);
+                    alert(`❌ Error: ${result.error}`);
+                }
+
+            } catch (error) {
+                console.error("❌ Error sending data:", error);
+                alert("❌ Something went wrong. Please try again!");
             }
-
-        } catch (error) {
-            console.error("❌ Error sending data:", error);
-            alert("❌ Something went wrong. Try again!");
-        }
-    });
-</script>
+        });
+    </script>
 </body>
 </html>
