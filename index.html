@@ -2,19 +2,25 @@
 <html lang="en">
 <head>
     <title>Tehlay's Airdrop Bot</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <h1>🔥 Welcome to Tehlay's Airdrop Bot</h1>
     <button id="checkBtn">✅ Check Now</button>
 
     <script>
-        // ✅ Capture user_id from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const userId = urlParams.get('user_id');
+        // ✅ Ensure Telegram WebApp API is loaded
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Ensure it expands fully
 
-        if (!userId) {
-            alert("❌ Error: User ID missing! Try restarting the bot.");
+        // ✅ Capture user info directly from Telegram WebApp payload
+        const user = tg.initDataUnsafe.user;
+
+        if (!user) {
+            alert("❌ Error: Failed to fetch user data! Please restart the bot.");
         }
+
+        console.log("User Data:", user);
 
         // ✅ Handle Check button click
         document.getElementById("checkBtn").addEventListener("click", async () => {
@@ -22,7 +28,7 @@
                 const response = await fetch("/check_clicked", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ user_id: userId })
+                    body: JSON.stringify({ user })
                 });
 
                 const result = await response.json();
