@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web App</title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        #countdown {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Web App</h1>
-    <form id="tg">
-        <div class="input-box">
-            <input type="text" name="name" placeholder="Name" required>
-        </div>
-        <div class="input-box">
-            <input type="text" name="lastname" placeholder="Lastname" required>
-        </div>
-        <div class="input-box">
-            <input type="text" name="job" placeholder="Job" required>
-        </div>
-        <div class="input-box">
-            <input type="number" name="age" placeholder="Age" required>
-        </div>
-        <button type="submit" class="btn">Send</button>
-    </form>
+    <iframe id="url-frame" src="https://www.effectiveratecpm.com/maccv6iuph?key=3919c11c4c4c8f084f9e2a531938dbdc" width="100%" height="90%"></iframe>
+    <div id="countdown">30</div>
 
     <script>
         // Initialize Telegram Web App
@@ -32,43 +29,68 @@
         // Get the chat ID from Telegram Web App data
         const chatId = tg.initDataUnsafe.user?.id;
 
-        // Check if chat ID is available
-        if (!chatId) {
-            alert("Chat ID not found. Please open this app from Telegram.");
-        }
+        // URLs to cycle through
+        const urls = [
+            "https://www.effectiveratecpm.com/maccv6iuph?key=3919c11c4c4c8f084f9e2a531938dbdc",
+            "https://www.example.com/second-url",
+            "https://www.example.com/third-url"
+        ];
 
-        // Form submission handler
-        document.getElementById('tg').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Countdown logic
+        const countdownElement = document.getElementById("countdown");
+        let countdown = 30;
+        let currentUrlIndex = 0;
 
+        const updateCountdown = () => {
+            countdownElement.textContent = countdown;
+            if (countdown === 0) {
+                countdownElement.textContent = "Your reward is sent. Thank you for supporting us!";
+                sendRewardMessage();
+                return;
+            }
+            countdown--;
+            setTimeout(updateCountdown, 1000);
+        };
+
+        // Change URL every 10 seconds
+        const changeUrl = () => {
+            currentUrlIndex = (currentUrlIndex + 1) % urls.length;
+            document.getElementById("url-frame").src = urls[currentUrlIndex];
+            setTimeout(changeUrl, 10000);
+        };
+
+        // Send reward message to the bot
+        const sendRewardMessage = () => {
             if (!chatId) {
                 alert("Chat ID not found. Please open this app from Telegram.");
                 return;
             }
 
-            // Construct the message
-            let message = `<b>User Details</b>\n`;
-            message += `<b>Name:</b> ${this.name.value}\n`;
-            message += `<b>Lastname:</b> ${this.lastname.value}\n`;
-            message += `<b>Job:</b> ${this.job.value}\n`;
-            message += `<b>Age:</b> ${this.age.value}\n`;
-
-            // Send the message to the bot
             const BOT_TOKEN = "7367485470:AAEa_RDH00cXt9rqKv-2mPbqcwizxp2havI";
             const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
-            axios.post(API_URL, {
-                chat_id: chatId,
-                parse_mode: 'HTML',
-                text: message
+            fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: "Here is your reward (for try).",
+                }),
             })
-            .then(response => {
-                alert("Message sent to Telegram bot!");
+            .then(response => response.json())
+            .then(data => {
+                console.log("Reward message sent:", data);
             })
             .catch(error => {
-                console.error("Error sending message:", error);
+                console.error("Error sending reward message:", error);
             });
-        });
+        };
+
+        // Start countdown and URL cycling
+        updateCountdown();
+        setTimeout(changeUrl, 10000);
     </script>
 </body>
 </html>
