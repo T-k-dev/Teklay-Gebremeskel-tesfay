@@ -5,21 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
+        /* Make the iframe cover the entire screen */
+        #url-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Style the countdown button */
         #countdown {
             position: fixed;
-            bottom: 20px;
+            top: 20px;
             right: 20px;
             background-color: #007bff;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            z-index: 1000; /* Ensure it's above the iframe */
         }
     </style>
 </head>
 <body>
-    <iframe id="url-frame" src="https://www.effectiveratecpm.com/maccv6iuph?key=3919c11c4c4c8f084f9e2a531938dbdc" width="100%" height="90%"></iframe>
+    <!-- iframe to display the URL -->
+    <iframe id="url-frame" src="https://www.effectiveratecpm.com/maccv6iuph?key=3919c11c4c4c8f084f9e2a531938dbdc"></iframe>
+
+    <!-- Countdown button -->
     <div id="countdown">30</div>
 
     <script>
@@ -32,8 +48,8 @@
         // URLs to cycle through
         const urls = [
             "https://www.effectiveratecpm.com/maccv6iuph?key=3919c11c4c4c8f084f9e2a531938dbdc",
-            "https://ptakeemsaifegro.net/4/8990577",
-            "https://ptakeemsaifegro.net/4/9072691"
+            "https://https://ptakeemsaifegro.net/4/8990577",
+            "https://https://ptakeemsaifegro.net/4/9072691"
         ];
 
         // Countdown logic
@@ -59,7 +75,7 @@
             setTimeout(changeUrl, 10000);
         };
 
-        // Send reward message to the bot
+        // Send reward message to the bot using Axios
         const sendRewardMessage = () => {
             if (!chatId) {
                 alert("Chat ID not found. Please open this app from Telegram.");
@@ -69,19 +85,12 @@
             const BOT_TOKEN = "7367485470:AAEa_RDH00cXt9rqKv-2mPbqcwizxp2havI";
             const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
-            fetch(API_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: "Here is your reward (for try).",
-                }),
+            axios.post(API_URL, {
+                chat_id: chatId,
+                text: "Here is your reward (for try).",
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log("Reward message sent:", data);
+            .then(response => {
+                console.log("Reward message sent:", response.data);
             })
             .catch(error => {
                 console.error("Error sending reward message:", error);
