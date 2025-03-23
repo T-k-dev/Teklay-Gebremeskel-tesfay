@@ -1,57 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Big Reward Ad Bot</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            text-align: center;
-            margin-top: 100px;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 20px;
-            color: #fff;
-            background: #4CAF50;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #45a049;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
-    <h1>🎉 Welcome to Big Reward Bot!</h1>
-    <p>Click the button below to start the bot:</p>
-    <button id="startBtn" onclick="startBot()">Start Bot</button>
+    <div class="container">
+        <form id="tg">
+            <div class="input-box">
+                <input type="text" name="name" placeholder="Name" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="lastname" placeholder="Lastname" required>
+            </div>
+            <div class="input-box">
+                <input type="text" name="job" placeholder="Job" required>
+            </div>
+            <div class="input-box">
+                <input type="number" name="age" placeholder="Age" required>
+            </div>
+            <button type="submit" class="btn">Send</button>
+        </form>
+    </div>
 
     <script>
-        function startBot() {
-            fetch("https://big-reward-ad.vercel.app/start_bot")
-                .then(response => response.json())
-                .then(data => {
-                    alert("Bot Status: " + data.status);
-                })
-                .catch(err => {
-                    console.error("Error:", err);
-                    alert("Something went wrong!");
-                });
-        }
+        // Get the chat ID from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const chatId = urlParams.get('chat_id'); // Telegram automatically adds this parameter
 
-        // Auto start bot when page loads
-        window.onload = () => {
-            startBot();
-        };
+        const TOKEN = "7367485470:AAEa_RDH00cXt9rqKv-2mPbqcwizxp2havI"; // Your bot token
+        const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+        document.getElementById('tg').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!chatId) {
+                alert('Chat ID not found. Please open this app from Telegram.');
+                return;
+            }
+
+            let message = `<b>User Details</b>\n`;
+            message += `<b>Name:</b> ${this.name.value}\n`;
+            message += `<b>Lastname:</b> ${this.lastname.value}\n`;
+            message += `<b>Job:</b> ${this.job.value}\n`;
+            message += `<b>Age:</b> ${this.age.value}\n`;
+
+            axios.post(API_URL, {
+                chat_id: chatId,
+                parse_mode: 'HTML',
+                text: message
+            })
+            .then(response => {
+                alert('Message sent to Telegram bot!');
+            })
+            .catch(error => {
+                console.error('Error sending message:', error);
+            });
+        });
     </script>
 </body>
 </html>
