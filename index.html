@@ -3,49 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Mini App</title>
+    <title>Web App</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="container">
-        <form id="tg">
-            <div class="input-box">
-                <input type="text" name="name" placeholder="Name" required>
-            </div>
-            <div class="input-box">
-                <input type="text" name="lastname" placeholder="Lastname" required>
-            </div>
-            <div class="input-box">
-                <input type="text" name="job" placeholder="Job" required>
-            </div>
-            <div class="input-box">
-                <input type="number" name="age" placeholder="Age" required>
-            </div>
-            <button type="submit" class="btn">Send</button>
-        </form>
-    </div>
+    <h1>Welcome to the Web App</h1>
+    <form id="tg">
+        <div class="input-box">
+            <input type="text" name="name" placeholder="Name" required>
+        </div>
+        <div class="input-box">
+            <input type="text" name="lastname" placeholder="Lastname" required>
+        </div>
+        <div class="input-box">
+            <input type="text" name="job" placeholder="Job" required>
+        </div>
+        <div class="input-box">
+            <input type="number" name="age" placeholder="Age" required>
+        </div>
+        <button type="submit" class="btn">Send</button>
+    </form>
 
     <script>
-        // Get the chat ID from the URL query parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const chatId = urlParams.get('chat_id'); // Telegram automatically adds this parameter
+        // Initialize Telegram Web App
+        const tg = window.Telegram.WebApp;
 
-        const TOKEN = "7367485470:AAEa_RDH00cXt9rqKv-2mPbqcwizxp2havI"; // Your bot token
-        const API_URL = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+        // Get the chat ID from Telegram Web App data
+        const chatId = tg.initDataUnsafe.user?.id;
 
+        // Check if chat ID is available
+        if (!chatId) {
+            alert("Chat ID not found. Please open this app from Telegram.");
+        }
+
+        // Form submission handler
         document.getElementById('tg').addEventListener('submit', function(e) {
             e.preventDefault();
 
             if (!chatId) {
-                alert('Chat ID not found. Please open this app from Telegram.');
+                alert("Chat ID not found. Please open this app from Telegram.");
                 return;
             }
 
+            // Construct the message
             let message = `<b>User Details</b>\n`;
             message += `<b>Name:</b> ${this.name.value}\n`;
             message += `<b>Lastname:</b> ${this.lastname.value}\n`;
             message += `<b>Job:</b> ${this.job.value}\n`;
             message += `<b>Age:</b> ${this.age.value}\n`;
+
+            // Send the message to the bot
+            const BOT_TOKEN = "7367485470:AAEa_RDH00cXt9rqKv-2mPbqcwizxp2havI";
+            const API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
             axios.post(API_URL, {
                 chat_id: chatId,
@@ -53,10 +63,10 @@
                 text: message
             })
             .then(response => {
-                alert('Message sent to Telegram bot!');
+                alert("Message sent to Telegram bot!");
             })
             .catch(error => {
-                console.error('Error sending message:', error);
+                console.error("Error sending message:", error);
             });
         });
     </script>
