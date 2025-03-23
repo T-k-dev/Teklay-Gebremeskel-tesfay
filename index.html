@@ -48,31 +48,38 @@
         // URLs to cycle through
         const urls = [
             "https://www.effectiveratecpm.com/maccv6iuph?key=3919c11c4c4c8f084f9e2a531938dbdc",
-            "https://ptakeemsaifegro.net/4/8990577",
-            "https://ptakeemsaifegro.net/4/9072691"
+            "https://ptakeemsaifegro.net/4/9072691",
+            "https://ptakeemsaifegro.net/4/8990577"
         ];
 
         // Countdown logic
         const countdownElement = document.getElementById("countdown");
         let countdown = 30;
         let currentUrlIndex = 0;
+        let countdownInterval;
+        let urlChangeInterval;
 
         const updateCountdown = () => {
             countdownElement.textContent = countdown;
             if (countdown === 0) {
+                // Stop the countdown and URL cycling
+                clearInterval(countdownInterval);
+                clearInterval(urlChangeInterval);
+
+                // Update the button text
                 countdownElement.textContent = "Your reward is sent. Thank you for supporting us!";
+
+                // Send the reward message
                 sendRewardMessage();
                 return;
             }
             countdown--;
-            setTimeout(updateCountdown, 1000);
         };
 
         // Change URL every 10 seconds
         const changeUrl = () => {
             currentUrlIndex = (currentUrlIndex + 1) % urls.length;
             document.getElementById("url-frame").src = urls[currentUrlIndex];
-            setTimeout(changeUrl, 10000);
         };
 
         // Send reward message to the bot using Axios
@@ -98,8 +105,8 @@
         };
 
         // Start countdown and URL cycling
-        updateCountdown();
-        setTimeout(changeUrl, 10000);
+        countdownInterval = setInterval(updateCountdown, 1000);
+        urlChangeInterval = setInterval(changeUrl, 10000);
     </script>
 </body>
 </html>
