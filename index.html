@@ -11,16 +11,16 @@
     <script>
         // ✅ Ensure Telegram WebApp API is loaded
         const tg = window.Telegram.WebApp;
-        tg.expand(); // Ensure it expands fully
+        tg.expand(); // Expand full screen
 
-        // ✅ Capture user info directly from Telegram WebApp payload
+        // ✅ Extract user info from WebApp payload
         const user = tg.initDataUnsafe.user;
 
         if (!user) {
             alert("❌ Error: Failed to fetch user data! Please restart the bot.");
+        } else {
+            console.log("User Data:", user);
         }
-
-        console.log("User Data:", user);
 
         // ✅ Handle Check button click
         document.getElementById("checkBtn").addEventListener("click", async () => {
